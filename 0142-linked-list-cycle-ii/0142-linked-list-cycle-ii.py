@@ -6,12 +6,29 @@
 
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        temp = head
-        mpp = {}
-        while temp:
-            if temp in mpp:
-                return temp
-            mpp[temp] = 1
-            temp = temp.next
+        # Brute
+
+        # temp = head
+        # mpp = {}
+        # while temp:
+        #     if temp in mpp:
+        #         return temp
+        #     mpp[temp] = 1
+        #     temp = temp.next
+        # return None
+
+        # Optimal
+
+        slow = head
+        fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                slow = head
+                while slow != fast:
+                    slow = slow.next
+                    fast = fast.next
+                return slow
         return None
         
