@@ -8,11 +8,22 @@ class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         # Brute
 
-        temp = head
-        mpp = defaultdict(int)
-        while (temp):
-            if temp in mpp:
+        # temp = head
+        # mpp = defaultdict(int)
+        # while (temp):
+        #     if temp in mpp:
+        #         return True
+        #     mpp[temp] += 1
+        #     temp = temp.next
+        # return False
+
+        # Optimal
+
+        slow = head
+        fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
                 return True
-            mpp[temp] += 1
-            temp = temp.next
         return False
