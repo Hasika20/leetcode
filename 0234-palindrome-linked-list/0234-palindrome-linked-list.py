@@ -21,24 +21,39 @@ class Solution:
 
         # Optimal
 
-        slow = head
-        fast = head
-        while fast.next and fast.next.next:
-            slow = slow.next
-            fast = fast.next.next
-        prev = None
-        curr = slow.next
-        while curr:
-            front = curr.next
-            curr.next = prev
-            prev = curr
-            curr = front
+        # slow = head
+        # fast = head
+        # while fast.next and fast.next.next:
+        #     slow = slow.next
+        #     fast = fast.next.next
+        # prev = None
+        # curr = slow.next
+        # while curr:
+        #     front = curr.next
+        #     curr.next = prev
+        #     prev = curr
+        #     curr = front
+        # temp = head
+        # while prev:
+        #     if temp.val != prev.val:
+        #         return False
+        #     temp = temp.next
+        #     prev = prev.next
+        # return True
+
         temp = head
-        while prev:
-            if temp.val != prev.val:
-                return False
+        arr = []
+        while temp:
+            arr.append(temp.val)
             temp = temp.next
-            prev = prev.next
+        n = len(arr)
+        low = 0
+        high = n - 1
+        while low < high:
+            if arr[low] != arr[high]:
+                return False
+            low += 1
+            high -= 1
         return True
         
         
